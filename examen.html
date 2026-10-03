@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTI VENTAS - Examen Práctico</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-yellow: #ffd000;
+            --dark-header: #3d464d;
+            --dark-footer: #3d464d;
+            --light-bg: #f5f5f5;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #555;
+        }
+
+        /* Topbar & Search */
+        .topbar-bg {
+            background-color: #fff;
+            padding: 15px 0;
+        }
+        .logo-box {
+            background-color: var(--primary-yellow);
+            color: #000;
+            font-weight: 900;
+            font-size: 24px;
+            padding: 6px 16px;
+            display: inline-block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .search-box .input-group-text {
+            background-color: #fff;
+            color: var(--primary-yellow);
+            border-left: none;
+            cursor: pointer;
+        }
+        .search-box input {
+            border-right: none;
+        }
+        .search-box input:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+        }
+
+        /* Navbar Main */
+        .main-nav {
+            background-color: var(--dark-header);
+        }
+        .btn-categories {
+            background-color: var(--primary-yellow);
+            color: #000;
+            font-weight: 600;
+            border: none;
+            border-radius: 0;
+            padding: 12px 25px;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-link-custom {
+            color: #fff !important;
+            font-size: 14px;
+            padding: 12px 15px !important;
+            font-weight: 500;
+        }
+        .nav-link-custom:hover {
+            color: var(--primary-yellow) !important;
+        }
+        .header-icons {
+            color: var(--primary-yellow);
+            font-size: 16px;
+        }
+        .badge-custom {
+            border: 1px solid var(--primary-yellow);
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 10px;
+            vertical-align: top;
+            margin-left: 2px;
+        }
+
+        /* Hero Section */
+        .carousel-item-hero {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero-overlay h1 {
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        .hero-overlay p {
+            max-width: 500px;
+            font-size: 13px;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        .btn-outline-hero {
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 8px 24px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-outline-hero:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Offers Banner Side */
+        .offer-card {
+            height: 190px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .offer-card:last-child {
+            margin-bottom: 0;
+        }
+        .offer-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        .offer-overlay small {
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .offer-overlay h4 {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 5px 0 12px 0;
+        }
+        .btn-yellow-sm {
+            background-color: var(--primary-yellow);
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border: none;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        /* Features Bar */
+        .feature-box {
+            background-color: #fff;
+            padding: 25px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .feature-box i {
+            color: var(--primary-yellow);
+            font-size: 28px;
+            margin-right: 15px;
+        }
+        .feature-box h6 {
+            margin: 0;
+            font-weight: 700;
+            color: #333;
+            font-size: 15px;
+        }
+
+        /* Titles */
+        .section-title {
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 20px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+            padding-right: 15px;
+            background: var(--light-bg);
+            z-index: 1;
+        }
+        .title-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .title-container::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px dashed #ccc;
+            z-index: 0;
+        }
+
+        /* Category Card */
+        .cat-card {
+            background: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .cat-card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: #000;
+        }
+        .cat-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .cat-info h6 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .cat-info small {
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: #fff;
+            text-align: center;
+            padding: 20px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-img-wrap {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .product-img-wrap img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .product-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-decoration: none;
+        }
+        .product-price {
+            font-weight: 700;
+            font-size: 15px;
+            color: #333;
+        }
+        .product-price-old {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 13px;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+        .stars {
+            color: var(--primary-yellow);
+            font-size: 11px;
+            margin-top: 6px;
+        }
+        .stars span {
+            color: #888;
+            font-size: 10px;
+            margin-left: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-footer);
+            color: #b0b0b0;
+            padding-top: 40px;
+            padding-bottom: 30px;
+            font-size: 13px;
+        }
+        .footer h6 {
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+        .social-btn {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-yellow);
+            color: #000;
+            text-align: center;
+            line-height: 36px;
+            margin-right: 5px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .footer-bottom {
+            background-color: #32393f;
+            color: #a0a0a0;
+            padding: 15px 0;
+            font-size: 12px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-bottom a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Top / Search Bar -->
+    <div class="topbar-bg border-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo-box">MULTI VENTAS</div>
+                </div>
+                <div class="col-md-6 my-2 my-md-0">
+                    <div class="input-group search-box">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3 text-md-end text-center">
+                    <small class="text-muted d-block">Servicio al cliente</small>
+                    <strong class="text-dark">+52 9616112345</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="row align-items-center g-0">
+                <div class="col-md-3">
+                    <button class="btn-categories">
+                        <span><i class="fa fa-bars me-2"></i> Categorías</span>
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                </div>
+                <div class="col-md-7">
+                    <div class="d-flex flex-wrap">
+                        <a href="#" class="nav-link-custom">Inicio</a>
+                        <a href="#" class="nav-link-custom">Tienda</a>
+                        <a href="#" class="nav-link-custom">Galería</a>
+                        <a href="#" class="nav-link-custom">Nosotros</a>
+                        <a href="#" class="nav-link-custom">Contacto</a>
+                    </div>
+                </div>
+                <div class="col-md-2 text-end header-icons pe-3">
+                    <a href="#" class="text-decoration-none me-3 header-icons">
+                        <i class="fa fa-heart"></i><span class="badge-custom">0</span>
+                    </a>
+                    <a href="#" class="text-decoration-none header-icons">
+                        <i class="fa fa-shopping-cart"></i><span class="badge-custom">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container my-4">
+
+        <!-- Hero Slider & Banners Section -->
+        <div class="row mb-4">
+            <div class="col-lg-8 mb-3 mb-lg-0">
+                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-item-hero" style="background-image: url('carrusel-2.jpg');">
+                                <div class="hero-overlay">
+                                    <h1>Moda Femenina</h1>
+                                    <p>Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                    <a href="#" class="btn-outline-hero">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-item-hero" style="background-image: url('carrusel-1.jpg');">
+                                <div class="hero-overlay">
+                                    <h1>Moda Masculina</h1>
+                                    <p>Encuentra las mejores tendencias en vestir para caballeros con estilo exclusivo.</p>
+                                    <a href="#" class="btn-outline-hero">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-item-hero" style="background-image: url('carrusel-3.jpg');">
+                                <div class="hero-overlay">
+                                    <h1>Moda Infantil</h1>
+                                    <p>La mejor calidad y comodidad para los más pequeños del hogar.</p>
+                                    <a href="#" class="btn-outline-hero">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="offer-card" style="background-image: url('oferta-1.jpg');">
+                    <div class="offer-overlay">
+                        <small>AHORRA 20%</small>
+                        <h4>Ofertas de temporada</h4>
+                        <a href="#" class="btn-yellow-sm">Comprar</a>
+                    </div>
+                </div>
+                <div class="offer-card" style="background-image: url('oferta-2.jpg');">
+                    <div class="offer-overlay">
+                        <small>AHORRA 30%</small>
+                        <h4>Ofertas especiales</h4>
+                        <a href="#" class="btn-yellow-sm">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row g-3 mb-5">
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-box">
+                    <i class="fa fa-check"></i>
+                    <h6>Mejora calidad</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-box">
+                    <i class="fa fa-shipping-fast"></i>
+                    <h6>Envío gratis</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-box">
+                    <i class="fa fa-exchange-alt"></i>
+                    <h6>Devolución de 30 días</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-box">
+                    <i class="fa fa-phone-volume"></i>
+                    <h6>Soporte 24/7</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="title-container">
+            <h5 class="section-title">CATEGORÍAS</h5>
+        </div>
+        <div class="row g-3 mb-5">
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="cat-card">
+                    <img src="cat-1.jpg" alt="Ropa">
+                    <div class="cat-info">
+                        <h6>Ropa</h6>
+                        <small>100 Productos</small>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="cat-card">
+                    <img src="cat-2.jpg" alt="Electrónica">
+                    <div class="cat-info">
+                        <h6>Electrónica</h6>
+                        <small>100 Productos</small>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="cat-card">
+                    <img src="cat-3.jpg" alt="Calzado">
+                    <div class="cat-info">
+                        <h6>Calzado</h6>
+                        <small>100 Productos</small>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="cat-card">
+                    <img src="cat-4.jpg" alt="Belleza">
+                    <div class="cat-info">
+                        <h6>Belleza</h6>
+                        <small>100 Productos</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Featured Products Section -->
+        <div class="title-container">
+            <h5 class="section-title">PRODUCTOS DESTACADO</h5>
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        <img src="product-1.jpg" alt="Cámara fotográfica Canon">
+                    </div>
+                    <div>
+                        <a href="#" class="product-title d-block">Cámara fotográfica Canon</a>
+                        <div class="product-price">
+                            $12,500.00 <span class="product-price-old">$15,000.00</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                            <span>(99)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        <img src="product-2.jpg" alt="Blusa azul">
+                    </div>
+                    <div>
+                        <a href="#" class="product-title d-block">Blusa azul</a>
+                        <div class="product-price">
+                            $250.00 <span class="product-price-old">$400.00</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="far fa-star"></i>
+                            <span>(99)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        <img src="product-3.jpg" alt="Lámpara de mesa">
+                    </div>
+                    <div>
+                        <a href="#" class="product-title d-block">Lámpara de mesa</a>
+                        <div class="product-price">
+                            $1,250.00 <span class="product-price-old">$2,300.00</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="far fa-star"></i>
+                            <span>(99)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        <img src="product-4.jpg" alt="Tenis Nike">
+                    </div>
+                    <div>
+                        <a href="#" class="product-title d-block">Tenis Nike</a>
+                        <div class="product-price">
+                            $799.00 <span class="product-price-old">$993.00</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="far fa-star"></i>
+                            <span>(99)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h6>CONTÁCTANOS</h6>
+                    <p class="mb-3">Ubica nuestra tienda física en</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-warning me-2"></i> Av. central No. 123</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-warning me-2"></i> info@tienda.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-warning me-2"></i> +52 961 61 12345</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>MENÚ</h6>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fa fa-angle-right me-2"></i>Home</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2"></i>Tienda</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2"></i>Galería</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2"></i>Nosotros</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2"></i>Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>NUESTRAS REDES SOCIALES</h6>
+                    <div class="d-flex gap-1">
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <div class="container text-center text-md-start">
+            &copy; <a href="#">MULTI VENTAS</a>. Todos los derechos reservados. Diseñado por
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
